@@ -2,3 +2,8 @@ Library/
 Logs/
 Temp/
 *.sln
+.vs/
+*.csproj
+obj/
+Assets/TankConstructor/Images/Sources (PSD).psd.meta
+Assets/TankConstructor/Images/Sources (PSD).psd
