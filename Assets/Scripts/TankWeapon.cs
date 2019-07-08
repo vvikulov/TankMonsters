@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace TankMGame
 {
-    public enum WeaponType { COMMON, LASER, PLAZM }
+    public enum WeaponType { COMMON, LASER, PLAZM, COUNT }
 
     public class TankWeapon : MonoBehaviour
     {

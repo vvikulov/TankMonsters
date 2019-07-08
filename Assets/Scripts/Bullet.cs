@@ -20,9 +20,23 @@ namespace TankMGame
             WeaponType = weaponType;
         }
 
+        public void SetPosRotation(Vector2 pos, Quaternion rotation)
+        {
+            transform.position = pos;
+            transform.rotation = rotation;
+        }
+
         public void SetVelocity(Vector2 newVelocity)
         {
             m_rigidbody.velocity = newVelocity;
+        }
+
+        public void ResetAll()
+        {
+            //transform.position = Vector2.zero;
+            //m_rigidbody.position = Vector2.zero;
+            //m_rigidbody.rotation = 0.0f;
+            m_rigidbody.velocity = Vector2.zero;
         }
     }
 }
