@@ -9,15 +9,37 @@ namespace TankMGame
         #region MyRegion
         [SerializeField]
         private Rigidbody2D m_rigidbody;
+        private BulletsPool m_bulletsPool;
         #endregion
 
         public float Damage { get; private set; }
         public WeaponType WeaponType { get; private set; }
 
-        public void Init(WeaponType weaponType, float damage)
+        #region Unity Events
+        private void OnTriggerEnter2D(Collider2D col)
+        {
+            if(col.gameObject.layer == Constants.Layers.MONSTERS)
+            {
+                m_bulletsPool.MakeBulletAvailable(this);
+
+                VFXManager.Instance.ShowHit(this.transform.position);
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            if(other.gameObject.layer == Constants.Layers.BORDERS)
+            {
+                m_bulletsPool.MakeBulletAvailable(this);
+            }
+        }
+        #endregion
+
+        public void Init(WeaponType weaponType, float damage, BulletsPool bulletsPool)
         {
             Damage = damage;
             WeaponType = weaponType;
+            m_bulletsPool = bulletsPool;
         }
 
         public void SetPosRotation(Vector2 pos, Quaternion rotation)
@@ -33,9 +55,6 @@ namespace TankMGame
 
         public void ResetAll()
         {
-            //transform.position = Vector2.zero;
-            //m_rigidbody.position = Vector2.zero;
-            //m_rigidbody.rotation = 0.0f;
             m_rigidbody.velocity = Vector2.zero;
         }
     }

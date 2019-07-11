@@ -30,7 +30,7 @@ namespace TankMGame
             TankWeapon currentWeapon = m_tankWeaponChange.CurrentWeapon;
 
             Bullet bullet = m_bulletsPool.GetBullet(currentWeapon);
-            bullet.Init(currentWeapon.WeaponType, currentWeapon.Damage);
+            bullet.Init(currentWeapon.WeaponType, currentWeapon.Damage, m_bulletsPool);
             bullet.SetVelocity(currentWeapon.Speed * currentWeapon.BulletSpawnPoint.up);
         }
     }

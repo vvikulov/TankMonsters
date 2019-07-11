@@ -12,17 +12,18 @@ namespace TankMGame
         [SerializeField]
         private Transform m_tank;
         [SerializeField]
-        private SpriteRenderer m_map;
+        private Map m_map;
 
-        public Vector2 m_minPos;
-        public Vector2 m_maxPos;
+        private Vector2 m_minPos;
+        private Vector2 m_maxPos;
         #endregion
 
         #region Unity Events
         private void Start()
         {
             Vector2 viewSize = new Vector2(m_camera.orthographicSize * m_camera.aspect, m_camera.orthographicSize);
-            Vector2 mapSize = new Vector2(m_map.bounds.size.x / 2.0f, m_map.bounds.size.y / 2.0f);
+
+            Vector2 mapSize = m_map.MapHalfSize;
 
             m_minPos = new Vector2(-mapSize.x + viewSize.x, -mapSize.y + viewSize.y);
             m_maxPos = new Vector2(mapSize.x - viewSize.x, mapSize.y - viewSize.y);

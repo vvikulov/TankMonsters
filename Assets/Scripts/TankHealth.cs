@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace TankMGame
 {
@@ -14,11 +15,19 @@ namespace TankMGame
         private float m_defense;
         #endregion
 
-        public float Health { get { return m_health; } }
-
         public void RemoveHealth(float damage)
         {
-            m_health -= damage * m_defense;
+            m_health -= damage * (1 - m_defense);
+
+            if(m_health <= 0.0f)
+            {
+                RestartGame();
+            }
+        }
+
+        private void RestartGame()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 }

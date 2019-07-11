@@ -13,12 +13,16 @@ namespace TankMGame
         private string m_movementAxisName;
         [SerializeField]
         private string m_turnAxisName;
+        [SerializeField]
+        private Animator m_animator;
 
         public float m_speed = 12f;
         public float m_turnSpeed = 180f;
 
         private float m_movementInputValue;
         private float m_turnInputValue;
+
+        private bool m_isMove;
         #endregion
 
         #region Unity Events
@@ -26,6 +30,14 @@ namespace TankMGame
         {
             m_movementInputValue = Input.GetAxis(m_movementAxisName);
             m_turnInputValue = Input.GetAxis(m_turnAxisName);
+
+            bool isMove = m_movementInputValue != 0.0f || m_turnInputValue != 0.0f;
+
+            if(m_isMove != isMove)
+            {
+                m_animator.SetBool("isMove", isMove);
+                m_isMove = isMove;
+            }
         }
 
         private void FixedUpdate()

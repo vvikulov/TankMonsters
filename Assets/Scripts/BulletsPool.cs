@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace TankMGame
 {
-    [System.Serializable]
     public class BulletsPool : MonoBehaviour
     {
         #region Fields
@@ -16,7 +15,7 @@ namespace TankMGame
 
         private void Awake()
         {
-            m_available = new Dictionary<WeaponType, List<Bullet>>();//new List<Bullet>();
+            m_available = new Dictionary<WeaponType, List<Bullet>>();
 
             for(int i = 0; i < (int)WeaponType.COUNT; i++)
             {
@@ -65,10 +64,8 @@ namespace TankMGame
 
         private Bullet CreateBullet(TankWeapon currentWeapon)
         {
-            Bullet bullet = GameObject.Instantiate(m_bulletPrefabs[(int)currentWeapon.WeaponType],
-                currentWeapon.BulletSpawnPoint.position, currentWeapon.BulletSpawnPoint.rotation);
-            bullet.transform.SetParent(this.transform, true);
-            return bullet;
+            return GameObject.Instantiate(m_bulletPrefabs[(int)currentWeapon.WeaponType],
+                currentWeapon.BulletSpawnPoint.position, currentWeapon.BulletSpawnPoint.rotation, this.transform);
         }
     }
 }
