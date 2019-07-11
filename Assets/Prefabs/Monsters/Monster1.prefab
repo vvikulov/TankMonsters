@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1306653651033695167}
   - component: {fileID: 773982284971368696}
   - component: {fileID: 4312967501489288532}
-  - component: {fileID: -6977738380703167182}
+  - component: {fileID: -8597774654115845575}
   m_Layer: 8
   m_Name: Monster1
   m_TagString: Untagged
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_rigidbody: {fileID: 1306653651033695164}
   m_damage: 5
   m_speed: 1
-  m_monsterHealth: {fileID: -6977738380703167182}
+  m_healthController: {fileID: -8597774654115845575}
   m_monsterDamageReceiver: {fileID: 4312967501489288532}
 --- !u!114 &4312967501489288532
 MonoBehaviour:
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82db012477458f04db86e6268a65bd2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-6977738380703167182
+--- !u!114 &-8597774654115845575
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -142,12 +142,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1306653651033695166}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 904da277e0ae88f45b342249376cfdaf, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f1c1049d6dd4fc4c928d5eacc3a021e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_health: 4
   m_defense: 0.06
-  m_monster: {fileID: 773982284971368696}
 --- !u!1 &1306653651386703551
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,10 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace TankMGame
 {
-    public class GameSceneController : MonoBehaviour
+    public interface IRestartGame
+    {
+        void RestartGame();
+    }
+
+    public class GameSceneController : MonoBehaviour, IRestartGame
     {
         #region Fields
         [SerializeField]
@@ -28,8 +34,15 @@ namespace TankMGame
             m_map.Init();
             m_cameraController.Init(m_map, m_tank.transform);
             m_bulletsPool.Init(m_vfxController);
-            m_tank.Init(m_vfxController, m_bulletsPool);
+            m_tank.Init(m_vfxController, m_bulletsPool, this);
             m_monstersPool.Init(m_tank.transform, m_map.MapHalfSize);
+        }
+        #endregion
+
+        #region Public
+        public void RestartGame()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
         #endregion
     }

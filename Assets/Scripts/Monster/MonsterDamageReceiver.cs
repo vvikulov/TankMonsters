@@ -7,13 +7,13 @@ namespace TankMGame
     public class MonsterDamageReceiver : MonoBehaviour
     {
         #region Dependencies
-        private MonsterHealth m_monsterHealth;
+        private IHealth m_healthController;
         #endregion
 
         #region Public
-        public void Init(MonsterHealth monsterHealth)
+        public void Init(IHealth healthController)
         {
-            m_monsterHealth = monsterHealth;
+            m_healthController = healthController;
         }
         #endregion
 
@@ -21,7 +21,7 @@ namespace TankMGame
         {
             if(other.gameObject.layer == Constants.Layers.BULLETS)
             {
-                m_monsterHealth.RemoveHealth(other.GetComponent<Bullet>().Damage);
+                m_healthController.RemoveHealth(other.GetComponent<Bullet>().Damage);
             }
         }
     }

@@ -7,7 +7,7 @@ namespace TankMGame
     public class TankDamageReceiver : MonoBehaviour
     {
         #region Dependencies
-        private TankHealth m_tankHealth;
+        private IHealth m_healthController;
         private VfxController m_vfxController;
         #endregion
 
@@ -25,9 +25,9 @@ namespace TankMGame
         #endregion
 
         #region Public
-        public void Init(TankHealth tankHealth, VfxController vfxController)
+        public void Init(IHealth healthController, VfxController vfxController)
         {
-            m_tankHealth = tankHealth;
+            m_healthController = healthController;
             m_vfxController = vfxController;
 
             m_spriteRenderers = new List<SpriteRenderer>();
@@ -44,7 +44,7 @@ namespace TankMGame
             if(!m_isImmortal && collision.gameObject.layer == Constants.Layers.MONSTERS)
             {
                 m_vfxController.ShowHit(collision.GetContact(0).point);
-                m_tankHealth.RemoveHealth(collision.gameObject.GetComponent<Monster>().Damage);
+                m_healthController.RemoveHealth(collision.gameObject.GetComponent<Monster>().Damage);
                 SetIsImmortal(true);
                 StartCoroutine(MakeMortalAfterDelay(m_immortalTime));
             }

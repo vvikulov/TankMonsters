@@ -732,7 +732,7 @@ MonoBehaviour:
   m_tankMovement: {fileID: 7275017900059150407}
   m_tankShooting: {fileID: 3489441838579691683}
   m_tankWeaponChange: {fileID: 2479635002785187464}
-  m_tankHealth: {fileID: 392921440177572299}
+  m_healthController: {fileID: 392921440177572299}
   m_tankDamageReceiver: {fileID: 1057347539}
 --- !u!114 &7275017900059150407
 MonoBehaviour:

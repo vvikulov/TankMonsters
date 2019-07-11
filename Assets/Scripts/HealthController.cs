@@ -1,25 +1,36 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace TankMGame
 {
-    public class MonsterHealth : MonoBehaviour
+    public interface IHealth
     {
+        void RemoveHealth(float damage);
+    }
+
+    public class HealthController : MonoBehaviour, IHealth
+    {
+        #region Dependencies
+        private IDeath m_mortalObj;
+        #endregion
+
         #region Fields
         [SerializeField]
         private float m_health;
-        private float m_currentHealth;
         [SerializeField]
         [Range(0.0f, 1.0f)]
         private float m_defense;
-        [SerializeField]
-        private Monster m_monster;
+
+        private float m_currentHealth;
         #endregion
 
         #region Public
-        public void Init()
+        public void Init(IDeath mortalObj)
         {
+            m_mortalObj = mortalObj;
+
             ResetHealth();
         }
 
@@ -34,7 +45,7 @@ namespace TankMGame
 
             if(m_currentHealth <= 0.0f)
             {
-                m_monster.Death();
+                m_mortalObj.Death();
             }
         }
         #endregion

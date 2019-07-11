@@ -6,7 +6,7 @@ namespace TankMGame
 {
     public enum MonsterType { MONSTER_1, MONSTER_2, MONSTER_3, COUNT }
 
-    public class Monster : MonoBehaviour
+    public class Monster : MonoBehaviour, IDeath
     {
         #region Dependencies
         private Transform m_target;
@@ -23,7 +23,7 @@ namespace TankMGame
         [SerializeField]
         private float m_speed;
         [SerializeField]
-        private MonsterHealth m_monsterHealth;
+        private HealthController m_healthController;
         [SerializeField]
         private MonsterDamageReceiver m_monsterDamageReceiver;
 
@@ -53,8 +53,8 @@ namespace TankMGame
         {
             m_monstersPool = monstersPool;
 
-            m_monsterHealth.Init();
-            m_monsterDamageReceiver.Init(m_monsterHealth);
+            m_healthController.Init(this);
+            m_monsterDamageReceiver.Init(m_healthController);
         }
 
         public void SetPos(Vector2 pos)
@@ -72,7 +72,7 @@ namespace TankMGame
         {
             this.gameObject.SetActive(false);
             m_isCanMove = false;
-            m_monsterHealth.ResetHealth();
+            m_healthController.ResetHealth();
             m_monstersPool.MakeMonsterAvailable(this);
         }
         #endregion
