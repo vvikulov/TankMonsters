@@ -6,11 +6,15 @@ namespace TankMGame
 {
     public class MonsterDamageReceiver : MonoBehaviour
     {
-        #region Fields
-        [SerializeField]
+        #region Dependencies
         private MonsterHealth m_monsterHealth;
-        [SerializeField]
-        private Monster m_monster;
+        #endregion
+
+        #region Public
+        public void Init(MonsterHealth monsterHealth)
+        {
+            m_monsterHealth = monsterHealth;
+        }
         #endregion
 
         private void OnTriggerEnter2D(Collider2D other)

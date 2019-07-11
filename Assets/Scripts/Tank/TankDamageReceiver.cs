@@ -6,6 +6,11 @@ namespace TankMGame
 {
     public class TankDamageReceiver : MonoBehaviour
     {
+        #region Dependencies
+        private TankHealth m_tankHealth;
+        private VfxController m_vfxController;
+        #endregion
+
         #region Fields
         [SerializeField]
         private float m_immortalTime = 3.0f;//sec
@@ -13,17 +18,18 @@ namespace TankMGame
         private float m_immortalColorA = 0.5f;
         [SerializeField]
         private float m_normalColorA = 1.0f;
-        [SerializeField]
-        private TankHealth m_tankHealth;
 
         private bool m_isImmortal;
         private List<SpriteRenderer> m_spriteRenderers;
         private List<Collider2D> m_colliders;
         #endregion
 
-        #region Unity Events
-        private void Awake()
+        #region Public
+        public void Init(TankHealth tankHealth, VfxController vfxController)
         {
+            m_tankHealth = tankHealth;
+            m_vfxController = vfxController;
+
             m_spriteRenderers = new List<SpriteRenderer>();
             SearchForComponentRecursively<SpriteRenderer>(m_spriteRenderers, this.transform);
 
@@ -32,6 +38,20 @@ namespace TankMGame
         }
         #endregion
 
+        #region Unity Events
+        void OnCollisionEnter2D(Collision2D collision)
+        {
+            if(!m_isImmortal && collision.gameObject.layer == Constants.Layers.MONSTERS)
+            {
+                m_vfxController.ShowHit(collision.GetContact(0).point);
+                m_tankHealth.RemoveHealth(collision.gameObject.GetComponent<Monster>().Damage);
+                SetIsImmortal(true);
+                StartCoroutine(MakeMortalAfterDelay(m_immortalTime));
+            }
+        }
+        #endregion
+
+        #region Helpers
         private void SearchForComponentRecursively<T>(List<T> list, Transform t) where T : Component
         {
             list.AddRange(t.GetComponentsInChildren<T>(true));
@@ -51,17 +71,6 @@ namespace TankMGame
                 newColor = spriteRenderer.color;
                 newColor.a = newA;
                 spriteRenderer.color = newColor;
-            }
-        }
-
-        void OnCollisionEnter2D(Collision2D collision)
-        {
-            if(!m_isImmortal && collision.gameObject.layer == Constants.Layers.MONSTERS)
-            {
-                VFXManager.Instance.ShowHit(collision.GetContact(0).point);
-                m_tankHealth.RemoveHealth(collision.gameObject.GetComponent<Monster>().Damage);
-                SetIsImmortal(true);
-                StartCoroutine(MakeMortalAfterDelay(m_immortalTime));
             }
         }
 
@@ -93,5 +102,6 @@ namespace TankMGame
                 collider.gameObject.layer = layer;
             }
         }
+        #endregion
     }
 }

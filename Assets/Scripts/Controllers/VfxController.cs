@@ -4,17 +4,19 @@ using UnityEngine;
 
 namespace TankMGame
 {
-    public class VFXManager : UnitySingleton<VFXManager>
+    public class VfxController : MonoBehaviour
     {
         #region Fields
         [SerializeField]
-        private Transform hitPrefab;
-        private List<Transform> hitsGo;
+        private Transform m_hitPrefab;
+
+        private List<Transform> m_hitsGo;
         #endregion
 
-        override protected void Init()
+        #region Public
+        public void Init()
         {
-            hitsGo = new List<Transform>();
+            m_hitsGo = new List<Transform>();
         }
 
         public void ShowHit(Vector2 pos)
@@ -22,8 +24,8 @@ namespace TankMGame
             Transform vfx = GetAvailableHitGo();
             if(vfx == null)
             {
-                vfx = GameObject.Instantiate(hitPrefab, this.transform);
-                hitsGo.Add(vfx);
+                vfx = GameObject.Instantiate(m_hitPrefab, this.transform);
+                m_hitsGo.Add(vfx);
             }
             else
             {
@@ -31,10 +33,12 @@ namespace TankMGame
             }
             vfx.position = pos;
         }
+        #endregion
 
+        #region Helpers
         private Transform GetAvailableHitGo()
         {
-            foreach(Transform go in hitsGo)
+            foreach(Transform go in m_hitsGo)
             {
                 if(!go.gameObject.activeSelf)
                 {
@@ -43,5 +47,6 @@ namespace TankMGame
             }
             return null;
         }
+        #endregion
     }
 }

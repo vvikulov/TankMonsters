@@ -6,6 +6,10 @@ namespace TankMGame
 {
     public class BulletsPool : MonoBehaviour
     {
+        #region Dependencies
+        private VfxController m_vfxController;
+        #endregion
+
         #region Fields
         [SerializeField]
         private Bullet[] m_bulletPrefabs;
@@ -13,8 +17,11 @@ namespace TankMGame
         private Dictionary<WeaponType, List<Bullet>> m_available;
         #endregion
 
-        private void Awake()
+        #region Public
+        public void Init(VfxController vfxController)
         {
+            m_vfxController = vfxController;
+
             m_available = new Dictionary<WeaponType, List<Bullet>>();
 
             for(int i = 0; i < (int)WeaponType.COUNT; i++)
@@ -54,18 +61,23 @@ namespace TankMGame
 
             return bullet;
         }
-        
+
         public void MakeBulletAvailable(Bullet bullet)
         {
-            bullet.ResetAll();
+            bullet.ResetVelocity();
             bullet.gameObject.SetActive(false);
             m_available[bullet.WeaponType].Add(bullet);
         }
+        #endregion
 
+        #region Helpers
         private Bullet CreateBullet(TankWeapon currentWeapon)
         {
-            return GameObject.Instantiate(m_bulletPrefabs[(int)currentWeapon.WeaponType],
+            Bullet bullet = GameObject.Instantiate(m_bulletPrefabs[(int)currentWeapon.WeaponType],
                 currentWeapon.BulletSpawnPoint.position, currentWeapon.BulletSpawnPoint.rotation, this.transform);
+            bullet.Init(currentWeapon.WeaponType, currentWeapon.Damage, this, m_vfxController);
+            return bullet;
         }
+        #endregion
     }
 }

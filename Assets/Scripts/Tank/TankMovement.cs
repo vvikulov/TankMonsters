@@ -47,6 +47,7 @@ namespace TankMGame
         }
         #endregion
 
+        #region Helpers
         private void Move()
         {
             Vector2 movement = transform.up * m_movementInputValue * m_speed * Time.deltaTime;
@@ -59,5 +60,6 @@ namespace TankMGame
             float turn = m_turnInputValue * m_turnSpeed * Time.deltaTime;
             m_rigidbody.MoveRotation(m_rigidbody.rotation - turn);
         }
+        #endregion
     }
 }

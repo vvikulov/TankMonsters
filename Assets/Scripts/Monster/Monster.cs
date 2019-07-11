@@ -8,6 +8,11 @@ namespace TankMGame
 
     public class Monster : MonoBehaviour
     {
+        #region Dependencies
+        private Transform m_target;
+        private MonstersPool m_monstersPool;
+        #endregion
+
         #region Fields
         [SerializeField]
         private MonsterType m_monsterType;
@@ -19,14 +24,16 @@ namespace TankMGame
         private float m_speed;
         [SerializeField]
         private MonsterHealth m_monsterHealth;
+        [SerializeField]
+        private MonsterDamageReceiver m_monsterDamageReceiver;
 
-        private Transform m_target;
         private bool m_isCanMove;
-        private MonstersPool m_monstersPool;
         #endregion
 
+        #region Properties
         public float Damage { get { return m_damage; } }
         public MonsterType MonsterType { get { return m_monsterType; } }
+        #endregion
 
         #region Unity Events
         private void FixedUpdate()
@@ -41,9 +48,13 @@ namespace TankMGame
         }
         #endregion
 
+        #region Public
         public void Init(MonstersPool monstersPool)
         {
             m_monstersPool = monstersPool;
+
+            m_monsterHealth.Init();
+            m_monsterDamageReceiver.Init(m_monsterHealth);
         }
 
         public void SetPos(Vector2 pos)
@@ -64,5 +75,6 @@ namespace TankMGame
             m_monsterHealth.ResetHealth();
             m_monstersPool.MakeMonsterAvailable(this);
         }
+        #endregion
     }
 }

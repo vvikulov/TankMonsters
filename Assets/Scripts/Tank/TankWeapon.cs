@@ -19,9 +19,11 @@ namespace TankMGame
         private Transform m_bulletSpawnPoint;
         #endregion
 
+        #region Properties
         public WeaponType WeaponType { get { return m_weaponType; } }
         public float Damage { get { return m_damage; } }
         public float Speed { get { return m_speed; } }
         public Transform BulletSpawnPoint { get { return m_bulletSpawnPoint; } }
+        #endregion
     }
 }

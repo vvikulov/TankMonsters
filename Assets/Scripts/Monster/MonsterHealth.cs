@@ -17,12 +17,11 @@ namespace TankMGame
         private Monster m_monster;
         #endregion
 
-        #region Unity Events
-        private void Awake()
+        #region Public
+        public void Init()
         {
             ResetHealth();
         }
-        #endregion
 
         public void ResetHealth()
         {
@@ -38,5 +37,6 @@ namespace TankMGame
                 m_monster.Death();
             }
         }
+        #endregion
     }
 }

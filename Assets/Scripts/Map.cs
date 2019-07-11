@@ -8,17 +8,20 @@ namespace TankMGame
     {
         #region Fields
         [SerializeField]
-        private SpriteRenderer m_map;
+        private SpriteRenderer m_spriteRenderer;
         [SerializeField]
-        private Collider2D[] m_borders;
+        private Collider2D[] m_borders;//top, bottom, left, right
         #endregion
 
+        #region Properties
         public Vector2 MapHalfSize { get; private set; }
+        #endregion
 
-        #region Unity Events
-        private void Awake()
+        #region Public
+        public void Init()
         {
-            MapHalfSize = new Vector2(m_map.bounds.size.x / 2.0f, m_map.bounds.size.y / 2.0f);
+            MapHalfSize = new Vector2(m_spriteRenderer.bounds.size.x / 2.0f,
+                m_spriteRenderer.bounds.size.y / 2.0f);
 
             Vector2 newPos = Vector2.zero;
 

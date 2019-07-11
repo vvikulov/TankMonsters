@@ -618,12 +618,13 @@ GameObject:
   - component: {fileID: 3489441838579691681}
   - component: {fileID: 4860127231144884139}
   - component: {fileID: 2973992374887434132}
+  - component: {fileID: 998599967}
+  - component: {fileID: 6507349260176094763}
   - component: {fileID: 7275017900059150407}
   - component: {fileID: 3489441838579691683}
   - component: {fileID: 2479635002785187464}
   - component: {fileID: 392921440177572299}
   - component: {fileID: 1057347539}
-  - component: {fileID: 998599967}
   m_Layer: 9
   m_Name: Tank
   m_TagString: Untagged
@@ -697,6 +698,42 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.15, y: 2.2}
   m_EdgeRadius: 0
+--- !u!95 &998599967
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3489441838579691682}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 69c479dfe1f551f499ba4eefff182a8d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6507349260176094763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3489441838579691682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b13d27cf7fc13e4294d5289454d9cdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_tankMovement: {fileID: 7275017900059150407}
+  m_tankShooting: {fileID: 3489441838579691683}
+  m_tankWeaponChange: {fileID: 2479635002785187464}
+  m_tankHealth: {fileID: 392921440177572299}
+  m_tankDamageReceiver: {fileID: 1057347539}
 --- !u!114 &7275017900059150407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -728,8 +765,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_fireButton: Fire1
-  m_tankWeaponChange: {fileID: 2479635002785187464}
-  m_bulletsPool: {fileID: 0}
 --- !u!114 &2479635002785187464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -759,7 +794,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_health: 100
-  m_defense: 0
+  m_defense: 0.1
 --- !u!114 &1057347539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -775,26 +810,6 @@ MonoBehaviour:
   m_immortalTime: 3
   m_immortalColorA: 0.5
   m_normalColorA: 1
-  m_tankHealth: {fileID: 392921440177572299}
---- !u!95 &998599967
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3489441838579691682}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 69c479dfe1f551f499ba4eefff182a8d, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3489441839018962706
 GameObject:
   m_ObjectHideFlags: 0

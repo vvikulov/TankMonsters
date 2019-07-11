@@ -6,13 +6,14 @@ namespace TankMGame
 {
     public class TankShooting : MonoBehaviour
     {
+        #region Dependencies
+        private TankWeaponChange m_tankWeaponChange;
+        private BulletsPool m_bulletsPool;
+        #endregion
+
         #region Fields
         [SerializeField]
         private string m_fireButton;
-        [SerializeField]
-        private TankWeaponChange m_tankWeaponChange;
-        [SerializeField]
-        private BulletsPool m_bulletsPool;
         #endregion
 
         #region Unity Events
@@ -20,18 +21,27 @@ namespace TankMGame
         {
             if(Input.GetButtonUp(m_fireButton))
             {
-                Fire();
+                Shoot();
             }
         }
         #endregion
 
-        public void Fire()
+        #region Public
+        public void Init(TankWeaponChange tankWeaponChange, BulletsPool bulletsPool)
+        {
+            m_tankWeaponChange = tankWeaponChange;
+            m_bulletsPool = bulletsPool;
+        }
+        #endregion
+
+        #region Helpers
+        private void Shoot()
         {
             TankWeapon currentWeapon = m_tankWeaponChange.CurrentWeapon;
 
             Bullet bullet = m_bulletsPool.GetBullet(currentWeapon);
-            bullet.Init(currentWeapon.WeaponType, currentWeapon.Damage, m_bulletsPool);
             bullet.SetVelocity(currentWeapon.Speed * currentWeapon.BulletSpawnPoint.up);
         }
+        #endregion
     }
 }

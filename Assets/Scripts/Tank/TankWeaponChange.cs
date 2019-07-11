@@ -12,7 +12,9 @@ namespace TankMGame
         private int m_currentWeaponIndex;
         #endregion
 
+        #region Properties
         public TankWeapon CurrentWeapon { get { return m_weapons[m_currentWeaponIndex]; } }
+        #endregion
 
         #region Unity Events
         private void Update()
@@ -41,6 +43,7 @@ namespace TankMGame
         }
         #endregion
 
+        #region Helpers
         private void ChangeWeapon(int newWeaponIndex)
         {
             if(m_currentWeaponIndex != newWeaponIndex)
@@ -50,5 +53,6 @@ namespace TankMGame
                 m_weapons[m_currentWeaponIndex].gameObject.SetActive(true);
             }
         }
+        #endregion
     }
 }

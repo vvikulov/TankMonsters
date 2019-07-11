@@ -15,6 +15,7 @@ namespace TankMGame
         private float m_defense;
         #endregion
 
+        #region Public
         public void RemoveHealth(float damage)
         {
             m_health -= damage * (1 - m_defense);
@@ -24,10 +25,13 @@ namespace TankMGame
                 RestartGame();
             }
         }
+        #endregion
 
+        #region Helpers
         private void RestartGame()
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
+        #endregion
     }
 }
