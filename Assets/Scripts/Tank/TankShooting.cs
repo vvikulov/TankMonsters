@@ -12,7 +12,6 @@ namespace TankMGame
         #endregion
 
         #region Fields
-        [SerializeField]
         private string m_fireButton;
         #endregion
 
@@ -27,8 +26,9 @@ namespace TankMGame
         #endregion
 
         #region Public
-        public void Init(TankWeaponChange tankWeaponChange, BulletsPool bulletsPool)
+        public void Init(string fireButton, TankWeaponChange tankWeaponChange, BulletsPool bulletsPool)
         {
+            m_fireButton = fireButton;
             m_tankWeaponChange = tankWeaponChange;
             m_bulletsPool = bulletsPool;
         }

@@ -10,19 +10,15 @@ namespace TankMGame
     {
         #region Fields
         [SerializeField]
-        private WeaponType m_weaponType;
-        [SerializeField]
-        private float m_damage;
-        [SerializeField]
-        private float m_speed;
+        private WeaponData m_weaponData;
         [SerializeField]
         private Transform m_bulletSpawnPoint;
         #endregion
 
         #region Properties
-        public WeaponType WeaponType { get { return m_weaponType; } }
-        public float Damage { get { return m_damage; } }
-        public float Speed { get { return m_speed; } }
+        public WeaponType WeaponType { get { return m_weaponData.weaponType; } }
+        public float Damage { get { return m_weaponData.damage; } }
+        public float Speed { get { return m_weaponData.speed; } }
         public Transform BulletSpawnPoint { get { return m_bulletSpawnPoint; } }
         #endregion
     }

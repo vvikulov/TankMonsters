@@ -9,7 +9,10 @@ namespace TankMGame
         #region Fields
         [SerializeField]
         private TankWeapon[] m_weapons;
+
         private int m_currentWeaponIndex;
+        private KeyCode m_prevWeaponButton;
+        private KeyCode m_nextWeaponButton;
         #endregion
 
         #region Properties
@@ -21,11 +24,11 @@ namespace TankMGame
         {
             int newWeaponIndex = m_currentWeaponIndex;
 
-            if(Input.GetKeyUp(KeyCode.Q))
+            if(Input.GetKeyUp(m_prevWeaponButton))
             {
                 newWeaponIndex--;
             }
-            else if(Input.GetKeyUp(KeyCode.W))
+            else if(Input.GetKeyUp(m_nextWeaponButton))
             {
                 newWeaponIndex++;
             }
@@ -40,6 +43,14 @@ namespace TankMGame
             }
 
             ChangeWeapon(newWeaponIndex);
+        }
+        #endregion
+
+        #region Public
+        public void Init(KeyCode prevWeaponButton, KeyCode nextWeaponButton)
+        {
+            m_prevWeaponButton = prevWeaponButton;
+            m_nextWeaponButton = nextWeaponButton;
         }
         #endregion
 

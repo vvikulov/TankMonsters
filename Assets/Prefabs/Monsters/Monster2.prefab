@@ -428,10 +428,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df1de34dfa15b684ca99283ff3fee943, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_monsterType: 1
+  m_monsterData: {fileID: 11400000, guid: 57297f66a9881da46aa6fd072be09fc2, type: 2}
   m_rigidbody: {fileID: 425521204277334817}
-  m_damage: 2
-  m_speed: 2
   m_healthController: {fileID: -4912149324942184866}
   m_monsterDamageReceiver: {fileID: -6524764862638116605}
 --- !u!114 &-6524764862638116605
@@ -458,5 +456,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f1c1049d6dd4fc4c928d5eacc3a021e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_health: 2
-  m_defense: 0

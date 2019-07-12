@@ -15,13 +15,10 @@ namespace TankMGame
 
         #region Fields
         [SerializeField]
-        private MonsterType m_monsterType;
+        private MonsterData m_monsterData;
+
         [SerializeField]
         private Rigidbody2D m_rigidbody;
-        [SerializeField]
-        private float m_damage;
-        [SerializeField]
-        private float m_speed;
         [SerializeField]
         private HealthController m_healthController;
         [SerializeField]
@@ -31,8 +28,8 @@ namespace TankMGame
         #endregion
 
         #region Properties
-        public float Damage { get { return m_damage; } }
-        public MonsterType MonsterType { get { return m_monsterType; } }
+        public float Damage { get { return m_monsterData.damage; } }
+        public MonsterType MonsterType { get { return m_monsterData.monsterType; } }
         #endregion
 
         #region Unity Events
@@ -42,8 +39,10 @@ namespace TankMGame
 
             if(transform.position != m_target.position)
             {
-                m_rigidbody.MovePosition(Vector2.MoveTowards(transform.position, m_target.position, Time.deltaTime * m_speed));
-                m_rigidbody.MoveRotation(Quaternion.LookRotation(m_target.position - transform.position, -Vector3.forward));
+                m_rigidbody.MovePosition(Vector2.MoveTowards(
+                    transform.position, m_target.position, Time.deltaTime * m_monsterData.speed));
+                m_rigidbody.MoveRotation(Quaternion.LookRotation(
+                    m_target.position - transform.position, -Vector3.forward));
             }
         }
         #endregion
@@ -53,7 +52,7 @@ namespace TankMGame
         {
             m_monstersPool = monstersPool;
 
-            m_healthController.Init(this);
+            m_healthController.Init(m_monsterData.health, m_monsterData.defense, this);
             m_monsterDamageReceiver.Init(m_healthController);
         }
 

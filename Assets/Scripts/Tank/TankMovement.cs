@@ -10,18 +10,15 @@ namespace TankMGame
         [SerializeField]
         private Rigidbody2D m_rigidbody;
         [SerializeField]
-        private string m_movementAxisName;
-        [SerializeField]
-        private string m_turnAxisName;
-        [SerializeField]
         private Animator m_animator;
 
-        public float m_speed = 12f;
-        public float m_turnSpeed = 180f;
+        private string m_movementAxisName;
+        private string m_turnAxisName;
+        private float m_speed;
+        private float m_turnSpeed;
 
         private float m_movementInputValue;
         private float m_turnInputValue;
-
         private bool m_isMove;
         #endregion
 
@@ -44,6 +41,16 @@ namespace TankMGame
         {
             Move();
             Turn();
+        }
+        #endregion
+
+        #region Public
+        public void Init(string movementAxisName, string turnAxisName, float speed, float turnSpeed)
+        {
+            m_movementAxisName = movementAxisName;
+            m_turnAxisName = turnAxisName;
+            m_speed = speed;
+            m_turnSpeed = turnSpeed;
         }
         #endregion
 

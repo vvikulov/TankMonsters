@@ -17,18 +17,16 @@ namespace TankMGame
         #endregion
 
         #region Fields
-        [SerializeField]
         private float m_health;
-        [SerializeField]
-        [Range(0.0f, 1.0f)]
         private float m_defense;
-
         private float m_currentHealth;
         #endregion
 
         #region Public
-        public void Init(IDeath mortalObj)
+        public void Init(float health, float defense, IDeath mortalObj)
         {
+            m_health = health;
+            m_defense = defense;
             m_mortalObj = mortalObj;
 
             ResetHealth();

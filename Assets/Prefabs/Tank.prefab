@@ -47,9 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fc307bc1b6599f419694be8412b89f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_weaponType: 2
-  m_damage: 3
-  m_speed: 13
+  m_weaponData: {fileID: 11400000, guid: 062e458f803350642b8ca1786b88a68c, type: 2}
   m_bulletSpawnPoint: {fileID: 8083410392760527899}
 --- !u!61 &7361302739741073546
 BoxCollider2D:
@@ -124,9 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fc307bc1b6599f419694be8412b89f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_weaponType: 0
-  m_damage: 1
-  m_speed: 10
+  m_weaponData: {fileID: 11400000, guid: f07b7838a6cf9444e85c637fd8fc2555, type: 2}
   m_bulletSpawnPoint: {fileID: 5887045819705149926}
 --- !u!61 &1086942279140308293
 BoxCollider2D:
@@ -280,9 +276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fc307bc1b6599f419694be8412b89f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_weaponType: 1
-  m_damage: 2
-  m_speed: 12
+  m_weaponData: {fileID: 11400000, guid: 8196a2821de49b144b3d390908321747, type: 2}
   m_bulletSpawnPoint: {fileID: 652312615248790927}
 --- !u!61 &3503106021488803114
 BoxCollider2D:
@@ -729,6 +723,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b13d27cf7fc13e4294d5289454d9cdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_tankData: {fileID: 11400000, guid: 86409f0d687926342bfa0accd0ed8e04, type: 2}
   m_tankMovement: {fileID: 7275017900059150407}
   m_tankShooting: {fileID: 3489441838579691683}
   m_tankWeaponChange: {fileID: 2479635002785187464}
@@ -747,11 +742,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_rigidbody: {fileID: 4860127231144884139}
-  m_movementAxisName: Vertical
-  m_turnAxisName: Horizontal
   m_animator: {fileID: 998599967}
-  m_speed: 9
-  m_turnSpeed: 190
 --- !u!114 &3489441838579691683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -764,7 +755,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 583ddcde231493b489bfd00648db7d42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_fireButton: Fire1
 --- !u!114 &2479635002785187464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -793,8 +783,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f1c1049d6dd4fc4c928d5eacc3a021e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_health: 100
-  m_defense: 0.1
 --- !u!114 &1057347539
 MonoBehaviour:
   m_ObjectHideFlags: 0
