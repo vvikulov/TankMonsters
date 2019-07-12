@@ -9,42 +9,23 @@ namespace TankMGame
     public class Monster : MonoBehaviour, IDeath
     {
         #region Dependencies
-        private Transform m_target;
         private MonstersPool m_monstersPool;
         #endregion
 
         #region Fields
         [SerializeField]
         private MonsterData m_monsterData;
-
-        [SerializeField]
-        private Rigidbody2D m_rigidbody;
         [SerializeField]
         private HealthController m_healthController;
         [SerializeField]
         private MonsterDamageReceiver m_monsterDamageReceiver;
-
-        private bool m_isCanMove;
+        [SerializeField]
+        private MonsterMovement m_monsterMovement;
         #endregion
 
         #region Properties
         public float Damage { get { return m_monsterData.damage; } }
         public MonsterType MonsterType { get { return m_monsterData.monsterType; } }
-        #endregion
-
-        #region Unity Events
-        private void FixedUpdate()
-        {
-            if(!m_isCanMove) return;
-
-            if(transform.position != m_target.position)
-            {
-                m_rigidbody.MovePosition(Vector2.MoveTowards(
-                    transform.position, m_target.position, Time.deltaTime * m_monsterData.speed));
-                m_rigidbody.MoveRotation(Quaternion.LookRotation(
-                    m_target.position - transform.position, -Vector3.forward));
-            }
-        }
         #endregion
 
         #region Public
@@ -54,6 +35,7 @@ namespace TankMGame
 
             m_healthController.Init(m_monsterData.health, m_monsterData.defense, this);
             m_monsterDamageReceiver.Init(m_healthController);
+            m_monsterMovement.Init(m_monsterData.speed);
         }
 
         public void SetPos(Vector2 pos)
@@ -63,14 +45,13 @@ namespace TankMGame
 
         public void StartMoveTowards(Transform target)
         {
-            m_target = target;
-            m_isCanMove = true;
+            m_monsterMovement.StartMoveTowards(target);
         }
 
         public void Death()
         {
             this.gameObject.SetActive(false);
-            m_isCanMove = false;
+            m_monsterMovement.BlockMovement();
             m_healthController.ResetHealth();
             m_monstersPool.MakeMonsterAvailable(this);
         }
